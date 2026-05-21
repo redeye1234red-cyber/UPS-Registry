@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายการสิ่งที่ต้องทำ - To Do List</title>
+    <link rel="stylesheet" href="todo-styles.css">
+</head>
+<body>
+    <div class="todo-container">
+        <div class="todo-header">
+            <h1>📝 รายการสิ่งที่ต้องทำ</h1>
+            <p class="subtitle">จัดระเบียบชีวิตของคุณด้วยรายการสิ่งที่ต้องทำ</p>
+        </div>
+
+        <div class="todo-input-section">
+            <div class="input-group">
+                <input type="text" id="todoInput" placeholder="เพิ่มสิ่งที่ต้องทำใหม่..." autofocus>
+                <button id="addBtn" class="btn-add">เพิ่ม</button>
+            </div>
+            <div class="priority-section">
+                <label for="prioritySelect">ความสำคัญ:</label>
+                <select id="prioritySelect" class="priority-select">
+                    <option value="low">🟢 ต่ำ</option>
+                    <option value="medium" selected>🟡 ปานกลาง</option>
+                    <option value="high">🔴 สูง</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+            <button class="filter-btn" data-filter="active">ยังไม่เสร็จ</button>
+            <button class="filter-btn" data-filter="completed">เสร็จแล้ว</button>
+            <button class="filter-btn" data-filter="high">สำคัญ</button>
+            <button id="clearCompletedBtn" class="btn-clear">ลบที่เสร็จแล้ว</button>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat">
+                <span class="stat-label">ทั้งหมด</span>
+                <span class="stat-number" id="totalCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">ยังไม่เสร็จ</span>
+                <span class="stat-number" id="activeCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">เสร็จแล้ว</span>
+                <span class="stat-number" id="completedCount">0</span>
+            </div>
+        </div>
+
+        <div class="todo-list" id="todoList">
+        </div>
+
+        <div class="empty-state" id="emptyState">
+            <p>📋 ยังไม่มีรายการ</p>
+            <p class="empty-text">เพิ่มรายการใหม่เพื่อเริ่มต้น</p>
+        </div>
+    </div>
+
+    <script src="todo-app.js"></script>
+</body>
+</html>

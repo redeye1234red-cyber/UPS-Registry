@@ -1,1 +1,40 @@
-<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Digital Clock - Multiple Time Zones</title>\n    <link rel=\"stylesheet\" href=\"clock-styles.css\">\n</head>\n<body>\n    <div class=\"clock-container\">\n        <h1>🕐 Digital Clock</h1>\n        <p class=\"subtitle\">Current Time in Different Time Zones</p>\n        \n        <div class=\"controls\">\n            <button id=\"addZoneBtn\" class=\"btn-add\">+ Add Time Zone</button>\n            <select id=\"formatSelect\" class=\"format-select\">\n                <option value=\"12\">12-Hour Format</option>\n                <option value=\"24\">24-Hour Format</option>\n            </select>\n        </div>\n\n        <div class=\"modal\" id=\"addZoneModal\">\n            <div class=\"modal-content\">\n                <span class=\"close\">&times;</span>\n                <h2>Add Time Zone</h2>\n                <select id=\"timezoneSelect\" class=\"timezone-select\">\n                    <option value=\"\">Select a timezone...</option>\n                </select>\n                <button id=\"confirmAddBtn\" class=\"btn-primary\">Add</button>\n            </div>\n        </div>\n\n        <div class=\"clocks-grid\" id=\"clocksGrid\">\n            <!-- Clock cards will be generated here -->\n        </div>\n    </div>\n\n    <script src=\"clock-data.js\"></script>\n    <script src=\"clock-app.js\"></script>\n</body>\n</html>"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock - Multiple Time Zones</title>
+    <link rel="stylesheet" href="clock-styles.css">
+</head>
+<body>
+    <div class="clock-container">
+        <h1>🕐 Digital Clock</h1>
+        <p class="subtitle">Current Time in Different Time Zones</p>
+        
+        <div class="controls">
+            <button id="addZoneBtn" class="btn-add">+ Add Time Zone</button>
+            <select id="formatSelect" class="format-select">
+                <option value="12">12-Hour Format</option>
+                <option value="24">24-Hour Format</option>
+            </select>
+        </div>
+
+        <div class="modal" id="addZoneModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add Time Zone</h2>
+                <select id="timezoneSelect" class="timezone-select">
+                    <option value="">Select a timezone...</option>
+                </select>
+                <button id="confirmAddBtn" class="btn-primary">Add</button>
+            </div>
+        </div>
+
+        <div class="clocks-grid" id="clocksGrid">
+        </div>
+    </div>
+
+    <script src="clock-data.js"></script>
+    <script src="clock-app.js"></script>
+</body>
+</html>
