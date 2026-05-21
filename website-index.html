@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-App Website - UPS Registry, To-Do List, Digital Clock</title>
+    <link rel="stylesheet" href="website-styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">🌐 MyApps</div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link" onclick="goToApp('ups')">🔋 UPS Registry</a></li>
+                <li><a href="#" class="nav-link" onclick="goToApp('todo')">📝 To-Do List</a></li>
+                <li><a href="#" class="nav-link" onclick="goToApp('clock')">🕐 Digital Clock</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+        <div class="hero">
+            <h1>Welcome to MyApps 🚀</h1>
+            <p class="hero-subtitle">All Your Tools in One Place</p>
+            <div class="apps-preview">
+                <div class="app-card" onclick="goToApp('ups')">
+                    <div class="app-icon">🔋</div>
+                    <h3>UPS Registry System</h3>
+                    <p>จัดการทะเบียนเครื่องสำรองไฟ ตรวจสอบสถานะ และเพิ่มเครื่องใหม่</p>
+                    <button class="btn-open">เข้าไป →</button>
+                </div>
+                <div class="app-card" onclick="goToApp('todo')">
+                    <div class="app-icon">📝</div>
+                    <h3>To-Do List</h3>
+                    <p>จัดการรายการสิ่งที่ต้องทำ กำหนดความสำคัญ และติดตามความคืบหน้า</p>
+                    <button class="btn-open">เข้าไป →</button>
+                </div>
+                <div class="app-card" onclick="goToApp('clock')">
+                    <div class="app-icon">🕐</div>
+                    <h3>Digital Clock</h3>
+                    <p>ดูเวลาในเขตเวลาต่างๆ เพิ่มเขตเวลาตามต้องการ</p>
+                    <button class="btn-open">เข้าไป →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UPS Registry Page -->
+    <div id="upsPage" class="page">
+        <iframe src="index.html" class="app-iframe" title="UPS Registry"></iframe>
+    </div>
+
+    <!-- To-Do List Page -->
+    <div id="todoPage" class="page">
+        <iframe src="todo.html" class="app-iframe" title="To-Do List"></iframe>
+    </div>
+
+    <!-- Clock Page -->
+    <div id="clockPage" class="page">
+        <iframe src="clock.html" class="app-iframe" title="Digital Clock"></iframe>
+    </div>
+
+    <!-- Back Button -->
+    <button id="backBtn" class="back-btn" onclick="goToApp('home')">
+        ← Back to Home
+    </button>
+
+    <footer class="footer">
+        <p>&copy; 2026 MyApps - All Rights Reserved | Created with ❤️</p>
+    </footer>
+
+    <script src="website-app.js"></script>
+</body>
+</html>
