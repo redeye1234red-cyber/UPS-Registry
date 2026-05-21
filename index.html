@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบทะเบียนเครื่องสำรองไฟ UPS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Page -->
+        <div id="loginPage" class="page active">
+            <div class="login-container">
+                <div class="login-box">
+                    <h1>🔋 ระบบทะเบียน UPS</h1>
+                    <p class="subtitle">โรงพยาบาลชุมชนหนองแค</p>
+                    
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="switchTab('login')">เข้าสู่ระบบ</button>
+                        <button class="tab-btn" onclick="switchTab('register')">สมัครสมาชิก</button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="loginForm" class="form-section active">
+                        <input type="email" id="loginEmail" placeholder="อีเมล" required>
+                        <input type="password" id="loginPassword" placeholder="รหัสผ่าน" required>
+                        <button type="submit" class="btn-primary">เข้าสู่ระบบ</button>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="registerForm" class="form-section">
+                        <input type="text" id="regName" placeholder="ชื่อ-นามสกุล" required>
+                        <input type="email" id="regEmail" placeholder="อีเมล" required>
+                        <input type="password" id="regPassword" placeholder="รหัสผ่าน (อย่างน้อย 6 ตัว)" required>
+                        <input type="password" id="regConfirm" placeholder="ยืนยันรหัสผ่าน" required>
+                        <button type="submit" class="btn-primary">สมัครสมาชิก</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App Page -->
+        <div id="mainPage" class="page">
+            <header class="header">
+                <div class="header-content">
+                    <h1>🔋 ระบบทะเบียนเครื่องสำรองไฟ UPS</h1>
+                    <div class="user-info">
+                        <span id="userName">ผู้ใช้</span>
+                        <button id="logoutBtn" class="btn-logout">ออกจากระบบ</button>
+                    </div>
+                </div>
+            </header>
+
+            <nav class="navbar">
+                <button class="nav-btn active" onclick="switchPage('dashboard')">📊 แดชบอร์ด</button>
+                <button class="nav-btn" onclick="switchPage('addups')">➕ เพิ่มเครื่องใหม่</button>
+                <button class="nav-btn" onclick="switchPage('table')">📋 ตารางข้อมูล</button>
+            </nav>
+
+            <!-- Dashboard Page -->
+            <div id="dashboardPage" class="page-content active">
+                <div class="dashboard">
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalUPS">137</div>
+                            <div class="stat-label">เครื่องทั้งหมด</div>
+                        </div>
+                        <div class="stat-card warning">
+                            <div class="stat-number" id="needsBattery">0</div>
+                            <div class="stat-label">ต้องเปลี่ยนแบต</div>
+                        </div>
+                        <div class="stat-card danger">
+                            <div class="stat-number" id="broken">1</div>
+                            <div class="stat-label">เครื่องเสีย</div>
+                        </div>
+                        <div class="stat-card success">
+                            <div class="stat-number" id="working">136</div>
+                            <div class="stat-label">ใช้งานได้</div>
+                        </div>
+                    </div>
+
+                    <div class="alerts-container">
+                        <h2>⚠️ เครื่องต้องเปลี่ยนแบตเตอรี่</h2>
+                        <div id="alertsList" class="alerts-list">
+                            <!-- จะถูกเติมด้วย JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add UPS Page -->
+            <div id="addupsPage" class="page-content">
+                <div class="form-container">
+                    <h2>เพิ่มเครื่องสำรองไฟใหม่</h2>
+                    <form id="addUpsForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>หมายเลขเครื่อง *</label>
+                                <input type="text" id="addNumber" placeholder="เช่น ups-138" required>
+                            </div>
+                            <div class="form-group">
+                                <label>รุ่น *</label>
+                                <input type="text" id="addModel" placeholder="เช่น Zircon AE 1000 VA" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>ติดตั้งที่ห้อง *</label>
+                                <input type="text" id="addLocation" placeholder="ชื่อห้อง" required>
+                            </div>
+                            <div class="form-group">
+                                <label>คอม/ตู้ที่ติดตั้ง *</label>
+                                <input type="text" id="addComputer" placeholder="เช่น doc-400" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>วันที่ติดตั้ง *</label>
+                                <input type="date" id="addInstallDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>ประกัน UPS (ปี) *</label>
+                                <select id="addWarranty" required>
+                                    <option value="">เลือกปี</option>
+                                    <option value="1">1 ปี</option>
+                                    <option value="2">2 ปี</option>
+                                    <option value="3">3 ปี</option>
+                                    <option value="5">5 ปี</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>อุปกรณ์กันไฟกระชาก</label>
+                                <input type="text" id="addSurge" placeholder="เช่น APC SurgeArrest1">
+                            </div>
+                            <div class="form-group">
+                                <label>ประกันตัวกันไฟ</label>
+                                <input type="text" id="addSurgeWarranty" placeholder="เช่น 10 ปี">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>สถานะ</label>
+                                <select id="addStatus">
+                                    <option value="ใช้งานได้">ใช้งานได้</option>
+                                    <option value="ต้องเปลี่ยนแบต">ต้องเปลี่ยนแบต</option>
+                                    <option value="เสีย">เสีย</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>การดำเนินการ</label>
+                                <select id="addAction">
+                                    <option value="ยังไม่ดำเนินการ">ยังไม่ดำเนินการ</option>
+                                    <option value="ดำเนินการแล้ว">ดำเนินการแล้ว</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">บันทึกข้อมูล</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Table Page -->
+            <div id="tablePage" class="page-content">
+                <div class="table-container">
+                    <h2>ตารางข้อมูลเครื่องสำรองไฟทั้งหมด</h2>
+                    
+                    <div class="filter-container">
+                        <input type="text" id="searchInput" placeholder="🔍 ค้นหา..." onkeyup="filterTable()">
+                        <select id="statusFilter" onchange="filterTable()">
+                            <option value="">-- ทั้งหมด --</option>
+                            <option value="ใช้งานได้">ใช้งานได้</option>
+                            <option value="ต้องเปลี่ยนแบต">ต้องเปลี่ยนแบต</option>
+                            <option value="เสีย">เสีย</option>
+                        </select>
+                    </div>
+
+                    <table id="dataTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>หมายเลข</th>
+                                <th>รุ่น</th>
+                                <th>ห้อง</th>
+                                <th>คอม</th>
+                                <th>วันติดตั้ง</th>
+                                <th>ประกัน</th>
+                                <th>เปลี่ยนแบตถัดไป</th>
+                                <th>สถานะ</th>
+                                <th>การดำเนินการ</th>
+                                <th>ลบ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- จะถูกเติมด้วย JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
